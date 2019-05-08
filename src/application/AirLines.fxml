@@ -14,10 +14,10 @@
       <TextField fx:id="txtGenerar" layoutX="1143.0" layoutY="26.0" prefHeight="39.0" prefWidth="166.0" />
       <Button fx:id="btnFechaO" layoutX="1010.0" layoutY="143.0" mnemonicParsing="false" onAction="#orgFecha" prefHeight="47.0" prefWidth="126.0" text="Fecha" />
       <Button fx:id="btnHorarioO" layoutX="1167.0" layoutY="143.0" mnemonicParsing="false" onAction="#orgHorario" prefHeight="47.0" prefWidth="126.0" text="Horario" />
-      <Button fx:id="btnAerolineaO" layoutX="1010.0" layoutY="234.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="126.0" text="Aerolinea" />
-      <Button fx:id="btnNumeroO" layoutX="1167.0" layoutY="234.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="126.0" text="Numero" />
-      <Button fx:id="btnDestinoO" layoutX="1010.0" layoutY="333.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="126.0" text="Destino" />
-      <Button fx:id="btnPuertaO" layoutX="1167.0" layoutY="333.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="126.0" text="Puerta" />
+      <Button fx:id="btnAerolineaO" layoutX="1010.0" layoutY="234.0" mnemonicParsing="false" onAction="#orgAerolinea" prefHeight="47.0" prefWidth="126.0" text="Aerolinea" />
+      <Button fx:id="btnNumeroO" layoutX="1167.0" layoutY="234.0" mnemonicParsing="false" onAction="#orgNumero" prefHeight="47.0" prefWidth="126.0" text="Numero" />
+      <Button fx:id="btnDestinoO" layoutX="1010.0" layoutY="333.0" mnemonicParsing="false" onAction="#orgDestino" prefHeight="47.0" prefWidth="126.0" text="Destino" />
+      <Button fx:id="btnPuertaO" layoutX="1167.0" layoutY="333.0" mnemonicParsing="false" onAction="#orgPuerta" prefHeight="47.0" prefWidth="126.0" text="Puerta" />
       <Separator layoutY="471.0" prefHeight="13.0" prefWidth="1328.0" />
       <TextField fx:id="txtBuscar" layoutX="74.0" layoutY="571.0" />
       <Button fx:id="btnFechaB" layoutX="350.0" layoutY="496.0" mnemonicParsing="false" onAction="#buscFecha" prefHeight="65.0" prefWidth="166.0" text="Fecha" />

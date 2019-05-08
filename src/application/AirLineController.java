@@ -68,110 +68,57 @@ public class AirLineController {
 		
 	}
 	
-/*	public void orgAerolinea(ActionEvent event) {//sort(comparable)
+	public void orgAerolinea(ActionEvent event) {//insercion
 		
 		long t1 = System.currentTimeMillis();
 		
-		Collections.sort(planes);
-		
-		ObservableList<String> vuelos = FXCollections.<String>observableArrayList();
-		
-		for(int i=0; i<planes.size(); i++) {
-			
-			vuelos.add(planes.get(i).info());
-			
-		}
+		ObservableList<String> vuelos = cont.orgAerolinea();
 		
 		listi.setItems(vuelos);
 		
 		long t2 = System.currentTimeMillis();
 		System.out.println(t2-t1);
 		
-	}*/
+	}
 	
-/*	public void orgNumero(ActionEvent event) {//insercion
+	public void orgNumero(ActionEvent event) {//insercion
 		
 		long t1 = System.currentTimeMillis();
 		
-		for(int i=1; i<planes.size(); i++) {
-			
-			for(int j=i; j>0 && planes.get(j-1).getId() > planes.get(j).getId(); j--) {//a[j-1]>a[j]
-				
-				Plane temp = planes.get(j-1);
-				planes.set(j-1, planes.get(j));
-				planes.set(j, temp);
-				
-			}
-			
-		}
-		
-		ObservableList<String> vuelos = FXCollections.<String>observableArrayList();
-		
-		for(int i=0; i<planes.size(); i++) {
-			
-			vuelos.add(planes.get(i).info());
-			
-		}
+		ObservableList<String> vuelos = cont.orgNumero();
 		
 		listi.setItems(vuelos);
 		
 		long t2 = System.currentTimeMillis();
 		System.out.println(t2-t1);
 		
-	}*/
+	}
 	
-/*	public void orgDestino(ActionEvent event) {//sort(comparator)
+	public void orgDestino(ActionEvent event) {//seleccion
 		
 		long t1 = System.currentTimeMillis();
 		
-		Collections.sort(planes, Plane.compName);
-		
-		ObservableList<String> vuelos = FXCollections.<String>observableArrayList();
-		
-		for(int i=0; i<planes.size(); i++) {
-			
-			vuelos.add(planes.get(i).info());
-			
-		}
+		ObservableList<String> vuelos = cont.orgDestino();
 		
 		listi.setItems(vuelos);
 		
 		long t2 = System.currentTimeMillis();
-		long t = t2-t1;
-		System.out.println(t);
+		System.out.println(t2-t1);
 		
-	}*/
+	}
 	
-/*	public void orgPuerta(ActionEvent event) {//insercion
+	public void orgPuerta(ActionEvent event) {//seleccion
 		
 		long t1 = System.currentTimeMillis();
 		
-		for(int i=1; i<planes.size(); i++) {
-			
-			for(int j=i; j>0 && planes.get(j-1).getDoor() > planes.get(j).getDoor(); j--) {//a[j-1]>a[j]
-				
-				Plane temp = planes.get(j-1);
-				planes.set(j-1, planes.get(j));
-				planes.set(j, temp);
-				
-			}
-			
-		}
-		
-		ObservableList<String> vuelos = FXCollections.<String>observableArrayList();
-		
-		for(int i=0; i<planes.size(); i++) {
-			
-			vuelos.add(planes.get(i).info());
-			
-		}
+		ObservableList<String> vuelos = cont.orgPuerta();
 		
 		listi.setItems(vuelos);
 		
 		long t2 = System.currentTimeMillis();
 		System.out.println(t2-t1);
 			
-	}*/
+	}
 	
 	public void buscFecha(ActionEvent event) {//secuencial
 		

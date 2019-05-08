@@ -38,22 +38,64 @@ public class Control {
 				e1.printStackTrace();
 			}
 			
-			Plane sig = firstPlane;
+			Plane sigg = firstPlane;
 			for(int i=1; i<cantVuelos; i++) {
 				try {
-					sig.setNext(new Plane(i));
-					sig = sig.getNext();
+					sigg.setNext(new Plane(i));
+					sigg = sigg.getNext();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
 			
+			for(int i=0; i < cantVuelos; i++) {
+				Plane sig = firstPlane;
+				Plane ant = firstPlane;
+				Boolean p = true;
+				Boolean end = false;
+				
+				while(sig.getNext().getNext() != null && !end) {
+					
+					if(sig.getRealDate() > sig.getNext().getRealDate()) {
+						
+						Plane temp = sig.getNext();
+						sig.setNext(sig.getNext().getNext());
+						temp.setNext(sig);
+						
+						if(p) {
+							firstPlane = temp;
+						}else {
+							ant.setNext(temp);
+						}
+						ant = temp;
+						
+					}else {
+						ant = sig;
+						sig = sig.getNext();
+					}
+					
+					if(sig.getNext().getNext() == null && sig.getRealDate() > sig.getNext().getRealDate()) {
+						
+						Plane temp = sig.getNext();
+						sig.setNext(null);
+						temp.setNext(sig);
+						ant.setNext(temp);
+						end = true;
+						sig = temp;
+						
+					}
+					
+					p = false;
+					
+				}
+			}
+			
 			ObservableList<String> vuelos = FXCollections.<String>observableArrayList();
 			
-			sig = firstPlane;
-			while(sig != null) {
-				vuelos.add(sig.info());
-				sig = sig.getNext();
+			Plane siggg = firstPlane;
+			while(siggg != null) {
+				vuelos.add(siggg.info());
+				siggg = siggg.getNext();
 			}
 			
 			return vuelos;
@@ -291,6 +333,230 @@ public class Control {
 				}
 				
 				if(sig.getNext().getNext() == null && sig.getRealTime() > sig.getNext().getRealTime()) {
+					
+					Plane temp = sig.getNext();
+					sig.setNext(null);
+					temp.setNext(sig);
+					ant.setNext(temp);
+					end = true;
+					sig = temp;
+					
+				}
+				
+				p = false;
+				
+			}
+		}
+		
+		ObservableList<String> vuelos = FXCollections.<String>observableArrayList();
+		
+		Plane sig = firstPlane;
+		while(sig != null) {
+			vuelos.add(sig.info());
+			sig = sig.getNext();
+		}
+		
+		return vuelos;
+		
+	}
+	
+	public ObservableList<String> orgAerolinea() {
+		
+		for(int i=0; i < cantVuelos; i++) {
+			Plane sig = firstPlane;
+			Plane ant = firstPlane;
+			Boolean p = true;
+			Boolean end = false;
+			
+			while(sig.getNext().getNext() != null && !end) {
+				
+				if(sig.getAirline().compareTo(sig.getNext().getAirline()) > 0) {//
+					
+					Plane temp = sig.getNext();
+					sig.setNext(sig.getNext().getNext());
+					temp.setNext(sig);
+					
+					if(p) {
+						firstPlane = temp;
+					}else {
+						ant.setNext(temp);
+					}
+					ant = temp;
+					
+				}else {
+					ant = sig;
+					sig = sig.getNext();
+				}
+				
+				if(sig.getNext().getNext() == null && sig.getAirline().compareTo(sig.getNext().getAirline()) > 0) {
+					
+					Plane temp = sig.getNext();
+					sig.setNext(null);
+					temp.setNext(sig);
+					ant.setNext(temp);
+					end = true;
+					sig = temp;
+					
+				}
+				
+				p = false;
+				
+			}
+		}
+		
+		ObservableList<String> vuelos = FXCollections.<String>observableArrayList();
+		
+		Plane sig = firstPlane;
+		while(sig != null) {
+			vuelos.add(sig.info());
+			sig = sig.getNext();
+		}
+		
+		return vuelos;
+		
+	}
+	
+	public ObservableList<String> orgNumero() {
+		
+		for(int i=0; i < cantVuelos; i++) {
+			Plane sig = firstPlane;
+			Plane ant = firstPlane;
+			Boolean p = true;
+			Boolean end = false;
+			
+			while(sig.getNext().getNext() != null && !end) {
+				
+				if(sig.getId() > sig.getNext().getId()) {
+					
+					Plane temp = sig.getNext();
+					sig.setNext(sig.getNext().getNext());
+					temp.setNext(sig);
+					
+					if(p) {
+						firstPlane = temp;
+					}else {
+						ant.setNext(temp);
+					}
+					ant = temp;
+					
+				}else {
+					ant = sig;
+					sig = sig.getNext();
+				}
+				
+				if(sig.getNext().getNext() == null && sig.getId() > sig.getNext().getId()) {
+					
+					Plane temp = sig.getNext();
+					sig.setNext(null);
+					temp.setNext(sig);
+					ant.setNext(temp);
+					end = true;
+					sig = temp;
+					
+				}
+				
+				p = false;
+				
+			}
+		}
+		
+		ObservableList<String> vuelos = FXCollections.<String>observableArrayList();
+		
+		Plane sig = firstPlane;
+		while(sig != null) {
+			vuelos.add(sig.info());
+			sig = sig.getNext();
+		}
+		
+		return vuelos;
+		
+	}
+	
+	public ObservableList<String> orgDestino() {
+		
+		for(int i=0; i < cantVuelos; i++) {
+			Plane sig = firstPlane;
+			Plane ant = firstPlane;
+			Boolean p = true;
+			Boolean end = false;
+			
+			while(sig.getNext().getNext() != null && !end) {
+				
+				if(sig.getEnd().compareTo(sig.getNext().getEnd()) > 0) {//
+					
+					Plane temp = sig.getNext();
+					sig.setNext(sig.getNext().getNext());
+					temp.setNext(sig);
+					
+					if(p) {
+						firstPlane = temp;
+					}else {
+						ant.setNext(temp);
+					}
+					ant = temp;
+					
+				}else {
+					ant = sig;
+					sig = sig.getNext();
+				}
+				
+				if(sig.getNext().getNext() == null && sig.getEnd().compareTo(sig.getNext().getEnd()) > 0) {
+					
+					Plane temp = sig.getNext();
+					sig.setNext(null);
+					temp.setNext(sig);
+					ant.setNext(temp);
+					end = true;
+					sig = temp;
+					
+				}
+				
+				p = false;
+				
+			}
+		}
+		
+		ObservableList<String> vuelos = FXCollections.<String>observableArrayList();
+		
+		Plane sigg = firstPlane;
+		while(sigg != null) {
+			vuelos.add(sigg.info());
+			sigg = sigg.getNext();
+		}
+		
+		return vuelos;
+		
+	}
+	
+	public ObservableList<String> orgPuerta() {
+		
+		for(int i=0; i < cantVuelos; i++) {
+			Plane sig = firstPlane;
+			Plane ant = firstPlane;
+			Boolean p = true;
+			Boolean end = false;
+			
+			while(sig.getNext().getNext() != null && !end) {
+				
+				if(sig.getDoor() > sig.getNext().getDoor()) {
+					
+					Plane temp = sig.getNext();
+					sig.setNext(sig.getNext().getNext());
+					temp.setNext(sig);
+					
+					if(p) {
+						firstPlane = temp;
+					}else {
+						ant.setNext(temp);
+					}
+					ant = temp;
+					
+				}else {
+					ant = sig;
+					sig = sig.getNext();
+				}
+				
+				if(sig.getNext().getNext() == null && sig.getDoor() > sig.getNext().getDoor()) {
 					
 					Plane temp = sig.getNext();
 					sig.setNext(null);
