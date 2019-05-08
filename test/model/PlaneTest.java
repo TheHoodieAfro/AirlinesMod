@@ -18,5 +18,18 @@ class PlaneTest {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	public void testInfo() {
+		
+		setUpEscenario1();
+		
+		String info = pl.info();
+		
+		if(info.equals("")) {
+			fail();
+		}
+		
+	}
 
 }

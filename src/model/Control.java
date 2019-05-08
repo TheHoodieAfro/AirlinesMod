@@ -13,13 +13,11 @@ public class Control {
 	
 	//Relations
 	private Plane firstPlane;
-	private Plane lastPlane;
 	private int cantVuelos;
 	
 	//Constructors
 	public Control() {
 		firstPlane = null;
-		lastPlane = null;
 		cantVuelos = 0;
 	}
 	
