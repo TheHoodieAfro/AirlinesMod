@@ -42,7 +42,6 @@ public class Control {
 			for(int i=1; i<cantVuelos; i++) {
 				try {
 					sig.setNext(new Plane(i));
-					sig.getNext().setBack(sig);
 					sig = sig.getNext();
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -209,40 +208,107 @@ public class Control {
 	//Organizacion
 	public ObservableList<String> orgFecha() {
 		
-		Plane sig = firstPlane;
-		boolean p = true;
-		while(sig.getNext().getNext() != null) {
-			if(sig.getRealDate() > sig.getNext().getRealDate()) {
-				Plane temp = sig;
-				sig.getBack().setNext(sig.getNext());
-				sig.getNext().setBack(sig.getBack());
-				sig.setBack(sig.getNext());
-				sig.setNext(sig.getNext().getNext());
-				sig.getNext().setBack(sig);
-				sig.getBack().setNext(sig);
+		for(int i=0; i < cantVuelos; i++) {
+			Plane sig = firstPlane;
+			Plane ant = firstPlane;
+			Boolean p = true;
+			Boolean end = false;
+			
+			while(sig.getNext().getNext() != null && !end) {
 				
-				if(p) {
+				if(sig.getRealDate() > sig.getNext().getRealDate()) {
+					
+					Plane temp = sig.getNext();
+					sig.setNext(sig.getNext().getNext());
+					temp.setNext(sig);
+					
+					if(p) {
+						firstPlane = temp;
+					}else {
+						ant.setNext(temp);
+					}
+					ant = temp;
+					
+				}else {
+					ant = sig;
+					sig = sig.getNext();
+				}
+				
+				if(sig.getNext().getNext() == null && sig.getRealDate() > sig.getNext().getRealDate()) {
+					
+					Plane temp = sig.getNext();
+					sig.setNext(null);
+					temp.setNext(sig);
+					ant.setNext(temp);
+					end = true;
+					sig = temp;
 					
 				}
 				
+				p = false;
+				
 			}
-			sig = sig.getNext();
-			
-			if(sig.getNext().getNext() == null) {
-				if(sig.getRealDate() > sig.getNext().getRealDate()) {
-					sig.getBack().setNext(sig.getNext());
-					sig.getNext().setBack(sig.getBack());
-					sig.setBack(sig.getNext());
-					sig.setNext(null);
-					sig.getBack().setNext(sig);
-				}
-			}
-			
 		}
 		
 		ObservableList<String> vuelos = FXCollections.<String>observableArrayList();
 		
-		sig = firstPlane;
+		Plane sig = firstPlane;
+		while(sig != null) {
+			vuelos.add(sig.info());
+			sig = sig.getNext();
+		}
+		
+		return vuelos;
+		
+	}
+	
+	public ObservableList<String> orgHorario() {
+		
+		for(int i=0; i < cantVuelos; i++) {
+			Plane sig = firstPlane;
+			Plane ant = firstPlane;
+			Boolean p = true;
+			Boolean end = false;
+			
+			while(sig.getNext().getNext() != null && !end) {
+				
+				if(sig.getRealTime() > sig.getNext().getRealTime()) {
+					
+					Plane temp = sig.getNext();
+					sig.setNext(sig.getNext().getNext());
+					temp.setNext(sig);
+					
+					if(p) {
+						firstPlane = temp;
+					}else {
+						ant.setNext(temp);
+					}
+					ant = temp;
+					
+				}else {
+					ant = sig;
+					sig = sig.getNext();
+				}
+				
+				if(sig.getNext().getNext() == null && sig.getRealTime() > sig.getNext().getRealTime()) {
+					
+					Plane temp = sig.getNext();
+					sig.setNext(null);
+					temp.setNext(sig);
+					ant.setNext(temp);
+					end = true;
+					sig = temp;
+					
+				}
+				
+				p = false;
+				
+			}
+		}
+		
+		ObservableList<String> vuelos = FXCollections.<String>observableArrayList();
+		
+		Plane sig = firstPlane;
 		while(sig != null) {
 			vuelos.add(sig.info());
 			sig = sig.getNext();

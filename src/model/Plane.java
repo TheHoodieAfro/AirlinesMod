@@ -27,7 +27,6 @@ public class Plane implements Comparable<Plane>{
 	
 	//Relations
 	private Plane next;
-	private Plane back;
 	
 	//Constructors
 	public Plane(int i) throws IOException {
@@ -41,7 +40,6 @@ public class Plane implements Comparable<Plane>{
 		generateDoor();
 		
 		next = null;
-		back = null;
 		
 	}
 	
@@ -116,14 +114,6 @@ public class Plane implements Comparable<Plane>{
 	
 	public void setNext(Plane next) {
 		this.next = next;
-	}
-	
-	public Plane getBack() {
-		return back;
-	}
-	
-	public void setBack(Plane back) {
-		this.back = back;
 	}
 	
 	//Methods
